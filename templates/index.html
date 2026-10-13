@@ -1,0 +1,44 @@
+import os
+os.makedirs("templates", exist_ok=True)
+html = """<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Linear Regression Project</title>
+</head>
+<body>
+    <h1>Linear Regression Prediction System</h1>
+
+```
+<h2>Ice Cream Profit Prediction</h2>
+<form method="POST">
+    <input type="hidden" name="model_type" value="icecream">
+    <label>Temperature:</label>
+    <input type="number" name="temperature" step="any" required>
+    <button type="submit">Predict Ice Cream Profits</button>
+</form>
+
+<hr>
+
+<h2>Advertising Sales Prediction</h2>
+<form method="POST">
+    <input type="hidden" name="model_type" value="advertising">
+    <label>TV Advertising Budget:</label>
+    <input type="number" name="tv" step="any" required>
+    <button type="submit">Predict Sales</button>
+</form>
+
+{% if prediction is not none %}
+    <h2>Prediction Result</h2>
+    <p>{{ message }}: {{ prediction }}</p>
+    <p>Test R2 Score: {{ model_score }}</p>
+{% endif %}
+```
+
+</body>
+</html>
+"""
+with open("templates/index.html", "w", encoding="utf-8") as f:
+    f.write(html)
+
+print("HTML file created successfully!")
